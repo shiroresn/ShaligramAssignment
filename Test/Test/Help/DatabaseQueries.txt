@@ -1,0 +1,43 @@
+create table tblEmployee(
+Id int Identity(1,1) Primary Key,
+EmployeeName varchar(200) Not Null,
+Email varchar(50) Unique Not Null,
+ContactNumber varchar(20) Unique Not Null,
+Gender varchar(5) Not Null,
+DepartmentId int Not Null,
+UploadedPhoto varchar(Max) Not Null,
+AreaOfInterest varchar(Max),
+IsActive Bit
+)
+
+create table tblDepartment(
+Id int Identity(1,1) Primary Key Not null,
+DepartmentName varchar(200) Unique Not null
+)
+
+create table tblAreaOfInterest(
+Id int Identity(1,1) Primary Key Not null,
+Name varchar(200) Unique Not null
+)
+
+--inserting demo data 
+
+INSERT INTO tblAreaOfInterest (Name) VALUES ('Business Analysis');
+INSERT INTO tblAreaOfInterest (Name) VALUES ('Development');
+INSERT INTO tblAreaOfInterest (Name) VALUES ('Accounting');
+INSERT INTO tblAreaOfInterest (Name) VALUES ('Engineering');
+INSERT INTO tblAreaOfInterest (Name) VALUES ('Marketing');
+INSERT INTO tblAreaOfInterest (Name) VALUES ('UI Design');
+INSERT INTO tblAreaOfInterest (Name) VALUES ('Project Management');
+INSERT INTO tblAreaOfInterest (Name) VALUES ('Testing');
+
+
+INSERT INTO tblDepartment (DepartmentName) VALUES ('Analysis');
+INSERT INTO tblDepartment (DepartmentName) VALUES ('Back End');
+INSERT INTO tblDepartment (DepartmentName) VALUES ('Database');
+INSERT INTO tblDepartment (DepartmentName) VALUES ('Accounting');
+INSERT INTO tblDepartment (DepartmentName) VALUES ('Front End');
+INSERT INTO tblDepartment (DepartmentName) VALUES ('Marketing');
+INSERT INTO tblDepartment (DepartmentName) VALUES ('Design');
+INSERT INTO tblDepartment (DepartmentName) VALUES ('Management');
+INSERT INTO tblDepartment (DepartmentName) VALUES ('Testing');
