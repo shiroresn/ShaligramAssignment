@@ -21,4 +21,19 @@ export class EmployeeService {
       let url = this.url;
       return this.httpService.get(url);
     }
+
+    getById(id): Observable<any> {
+      let url = this.url+id;
+      return this.httpService.get(url);
+    }
+
+    update(employee:Employee): Observable<any> {
+      let url = this.url+employee.id;
+      return this.httpService.put(url,employee);
+    }
+
+    delete(id): Observable<any> {
+      let url = this.url+id;
+      return this.httpService.delete(url);
+    }
 }

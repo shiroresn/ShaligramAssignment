@@ -90,6 +90,9 @@
                 <button style="float: left;" *ngIf="create" [disabled]="!f1.valid || !employee.uploadedPhoto" mat-stroked-button color="primary"
                 (click)="onCreate()">Create</button>
 
+                <button style="float: left;" *ngIf="!create" [disabled]="!f1.valid || !employee.uploadedPhoto || f1.pristine" mat-stroked-button color="primary"
+                (click)="onUpdate()">Update</button>
+
                 <button style="float: right;" mat-stroked-button color="primary"
                 routerLink="/">Cancel</button>
             </div>

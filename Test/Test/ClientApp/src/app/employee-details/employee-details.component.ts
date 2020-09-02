@@ -7,6 +7,7 @@ import { CommonApiService } from '../services/common-api.service';
 import { Department } from '../models/department';
 import { Interest } from '../models/interest';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-details',
@@ -21,6 +22,7 @@ export class EmployeeDetailsComponent implements OnInit, OnDestroy {
     private router:Router) { }
 
     @ViewChild('fileInput', {static:true}) fileInput: ElementRef;
+    @ViewChild('f1', {static:true}) f1: NgForm;
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -35,7 +37,25 @@ export class EmployeeDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.employee = new Employee();
-    this.create = true;
+
+    if(this.sharedService.viewEmployeeId)
+    {
+      this.create = false;
+      this.subscription.add(
+        this.service.getById(this.sharedService.viewEmployeeId).subscribe(
+          res=>{
+            console.log(res);
+            this.employee=res;
+            this.employee.areaOfInterest = JSON.parse(this.employee.areaOfInterest);
+          }
+        )
+      )
+    }
+    else{
+      this.create = true;
+      this.employee.isActive=true;
+    }
+   
 
     this.subscription.add(
       this.commonApiService.getAllDepartments().subscribe(
@@ -55,10 +75,6 @@ export class EmployeeDetailsComponent implements OnInit, OnDestroy {
       )
     );
 
-    if(this.create)
-    {
-      this.employee.isActive=true;
-    }
 
   }
 
@@ -105,8 +121,36 @@ export class EmployeeDetailsComponent implements OnInit, OnDestroy {
   }
   
   handleReaderLoaded(e) {
-  
+    this.f1.form.markAsDirty();
     this.employee.uploadedPhoto='data:image/png;base64,' + btoa(e.target.result);
+  }
+
+  onUpdate(){
+    var tempEmployee = Object.assign({},this.employee);
+
+    tempEmployee.areaOfInterest = JSON.stringify(this.employee.areaOfInterest);
+
+    if(tempEmployee.isActive==true)
+    {
+      tempEmployee.isActive=true;
+    }
+    else{
+      tempEmployee.isActive=false;
+    }
+    
+    this.subscription.add(
+      this.service.update(tempEmployee).subscribe(
+        res=>{
+          console.log(res);
+          this.sharedService.showSucessMessage("Employee Updated");
+          this.router.navigate(['/']);
+        },
+        err=>{
+          console.log(err);
+          this.sharedService.showErrorMessage("Something went wrong!");
+        }
+      )
+    );
   }
 
 }

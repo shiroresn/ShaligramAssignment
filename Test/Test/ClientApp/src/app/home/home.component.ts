@@ -64,6 +64,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onAddNew() {
     this.router.navigate(['/details'], { skipLocationChange: true });
+    this.sharedService.viewEmployeeId=null;
   }
 
   viewEmployee(id) {
