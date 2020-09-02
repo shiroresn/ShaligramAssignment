@@ -8,6 +8,8 @@ export class SharedService {
 
   constructor(private snackBar:MatSnackBar) { }
 
+  viewEmployeeId:number;
+
   showSucessMessage(message: string){
     this.snackBar.open(message, "Close", {
       duration: 5000,

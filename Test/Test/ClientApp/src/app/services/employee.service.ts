@@ -16,4 +16,9 @@ export class EmployeeService {
       let url = this.url;
       return this.httpService.post(url,employee);
     }
+
+    getAll(): Observable<any> {
+      let url = this.url;
+      return this.httpService.get(url);
+    }
 }
