@@ -1,1 +1,86 @@
-<p>employee-details works!</p>
+<mat-card class="centerDiv" style="width:60%">
+    <p style="font-size: 20px;">
+        <b>
+            Employee Details
+        </b>
+    </p>
+    <hr>
+    <form #f1="ngForm">
+
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 50%;">
+                    <mat-form-field class="grid1">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Ex. Kalpesh Jay Dixit" name="name"
+                            [(ngModel)]="employee.employeeName" required>
+                    </mat-form-field>
+                </td>
+                <td rowspan="3">
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="grid1">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Ex. yourname@gmail.com" name="email" [(ngModel)]="employee.email"
+                            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$" required>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="grid1">
+                        <mat-label>Contact Number</mat-label>
+                        <input matInput placeholder="Ex. 9764xxxxxx" name="contact" [(ngModel)]="employee.contactNumber"
+                            pattern="^[0-9]*$" minlength=4 maxlength=13 required>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+
+        <div class="grid1">
+            Gender * :
+            <mat-radio-group name="gender" [(ngModel)]="employee.gender">
+                <mat-radio-button value="male">Male</mat-radio-button>&nbsp;&nbsp;
+                <mat-radio-button value="female">Female</mat-radio-button>&nbsp;&nbsp;
+                <mat-radio-button value="other">Other</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <mat-form-field class="grid2">
+            <mat-label>Department</mat-label>
+            <mat-select name="department" [(ngModel)]="employee.departmentId" required>
+                <mat-option *ngFor="let department of departments" [value]="department.id">
+                    {{department.departmentName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field class="grid2">
+            <mat-label>Area Of Interest</mat-label>
+            <mat-select name="interests" [(ngModel)]="employee.areaOfInterest" multiple required>
+                <mat-option *ngFor="let interest of interests" [value]="interest.id">
+                    {{interest.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="grid1">
+            <mat-checkbox name="isActive" [(ngModel)]="employee.isActive">Is Active</mat-checkbox>
+        </div>
+
+        <hr>
+        <br>
+
+        <div class="grid1">
+            <button *ngIf="create" 
+            [disabled]="!f1.valid"
+            mat-stroked-button color="primary" (click)="onCreate()">Create</button>
+        </div>
+    
+            
+    </form>
+
+</mat-card>
