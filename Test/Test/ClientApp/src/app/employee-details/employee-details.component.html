@@ -15,6 +15,7 @@
                     <mat-form-field class="grid1">
                         <mat-label>Name</mat-label>
                         <input matInput placeholder="Ex. Kalpesh Jay Dixit" name="name"
+                        trim="blur"
                             [(ngModel)]="employee.employeeName" required>
                     </mat-form-field>
                 </td>
@@ -31,7 +32,8 @@
                     <mat-form-field class="grid1">
                         <mat-label>Email</mat-label>
                         <input matInput placeholder="Ex. yourname@gmail.com" name="email" [(ngModel)]="employee.email"
-                            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$" required>
+                        trim="blur"   
+                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$" required>
                     </mat-form-field>
                 </td>
             </tr>
@@ -40,7 +42,8 @@
                     <mat-form-field class="grid1">
                         <mat-label>Contact Number</mat-label>
                         <input matInput placeholder="Ex. 9764xxxxxx" name="contact" [(ngModel)]="employee.contactNumber"
-                            pattern="^[0-9]*$" minlength=4 maxlength=13 required>
+                        trim="blur"   
+                        pattern="^[0-9]*$" minlength=4 maxlength=13 required>
                     </mat-form-field>
                 </td>
             </tr>

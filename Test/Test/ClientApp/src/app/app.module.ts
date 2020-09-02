@@ -43,6 +43,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
     MatNativeDateModule,
     HttpClientModule,
     MatRadioModule,
-    FormsModule
+    FormsModule,
+    NgxTrimDirectiveModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
