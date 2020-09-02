@@ -34,7 +34,7 @@ export class EmployeeDetailsComponent implements OnInit, OnDestroy {
   interests:Interest[]=new Array();
 
   ngOnInit(): void {
-
+    this.employee = new Employee();
     this.create = true;
 
     this.subscription.add(

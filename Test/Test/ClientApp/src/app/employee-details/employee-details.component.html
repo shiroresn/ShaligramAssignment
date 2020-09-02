@@ -15,6 +15,7 @@
                     <mat-form-field class="grid1">
                         <mat-label>Name</mat-label>
                         <input matInput placeholder="Ex. Kalpesh Jay Dixit" name="name"
+                        maxlength="200"
                         trim="blur"
                             [(ngModel)]="employee.employeeName" required>
                     </mat-form-field>
@@ -33,6 +34,7 @@
                         <mat-label>Email</mat-label>
                         <input matInput placeholder="Ex. yourname@gmail.com" name="email" [(ngModel)]="employee.email"
                         trim="blur"   
+                        maxlength="50"
                         pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$" required>
                     </mat-form-field>
                 </td>
@@ -43,7 +45,7 @@
                         <mat-label>Contact Number</mat-label>
                         <input matInput placeholder="Ex. 9764xxxxxx" name="contact" [(ngModel)]="employee.contactNumber"
                         trim="blur"   
-                        pattern="^[0-9]*$" minlength=4 maxlength=13 required>
+                        pattern="^[0-9]*$" minlength=4 maxlength=20 required>
                     </mat-form-field>
                 </td>
             </tr>
@@ -84,8 +86,14 @@
         <br>
 
         <div class="grid1">
-            <button *ngIf="create" [disabled]="!f1.valid || !employee.uploadedPhoto" mat-stroked-button color="primary"
+            <div style="overflow: auto;">
+                <button style="float: left;" *ngIf="create" [disabled]="!f1.valid || !employee.uploadedPhoto" mat-stroked-button color="primary"
                 (click)="onCreate()">Create</button>
+
+                <button style="float: right;" mat-stroked-button color="primary"
+                routerLink="/">Cancel</button>
+            </div>
+           
         </div>
 
 
