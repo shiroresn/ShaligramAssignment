@@ -7,6 +7,8 @@ import { Employee } from '../models/employee';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { CustomConfirmationDialogComponent } from '../custom-confirmation-dialog/custom-confirmation-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +19,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(private sharedService: SharedService,
     private service: EmployeeService,
-    private router: Router) { }
+    private router: Router,
+    public dialog: MatDialog) { }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -70,6 +73,31 @@ export class HomeComponent implements OnInit, OnDestroy {
   viewEmployee(id) {
     this.sharedService.viewEmployeeId=id;
     this.router.navigate(['/details'], { skipLocationChange: true });
+  }
+
+  deleteEmployee(id){
+    const dialogRef = this.dialog.open(CustomConfirmationDialogComponent, {
+      width: '275px', height: 'auto',
+      data: {message: 'confirmDelete'},
+      disableClose: true,
+    },);
+
+    dialogRef.afterClosed().subscribe(choice => {
+      console.log(choice);
+
+      if(choice)
+      {
+        this.service.delete(id).subscribe(res=>{
+          this.ngOnInit();
+          this.sharedService.showSucessMessage("Employee Deleted!");
+        },
+        err=>{
+          this.ngOnInit();
+          this.sharedService.showErrorMessage("Something went wrong!");
+        })
+        
+      }
+    });
   }
 
 }

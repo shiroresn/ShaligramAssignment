@@ -54,7 +54,10 @@
         <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef ></th>
             <td mat-cell *matCellDef="let row"  matTooltip="{{row.action}}">
-                
+                <button mat-icon-button color="primary" matTooltip="Delete Employee" 
+                (click)="deleteEmployee(row.id)">
+                    <mat-icon>close</mat-icon>
+                  </button>  
             </td>
         </ng-container>
     

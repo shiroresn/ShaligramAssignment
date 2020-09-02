@@ -1,0 +1,7 @@
+<div *ngIf="data.message=='confirmDelete'">
+    <p>Confirm Delete?</p>
+    <button mat-raised-button color="primary" style="margin-top:10%"
+        [mat-dialog-close]=true>Ok</button>
+    <button mat-raised-button color="primary" style="margin-top:10%;margin-left: 5px" [mat-dialog-close]=false
+        cdkFocusInitial>Cancel</button>
+</div>

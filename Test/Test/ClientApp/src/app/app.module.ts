@@ -44,12 +44,14 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
+import { CustomConfirmationDialogComponent } from './custom-confirmation-dialog/custom-confirmation-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     EmployeeDetailsComponent,
+    CustomConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,6 +102,7 @@ import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
     NgxTrimDirectiveModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CustomConfirmationDialogComponent]
 })
 export class AppModule { }
