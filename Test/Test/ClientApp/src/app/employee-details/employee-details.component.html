@@ -7,6 +7,8 @@
     <hr>
     <form #f1="ngForm">
 
+        <input hidden type="file" (change)="onUploadChange($event)" accept="image/*" #fileInput>
+
         <table style="width: 100%;">
             <tr>
                 <td style="width: 50%;">
@@ -18,6 +20,10 @@
                 </td>
                 <td rowspan="3">
 
+                    <div class="pointer grid1" matTooltip="upload / change photo" (click)="fileInput.click()">
+                        <img *ngIf="!employee.uploadedPhoto" class="centerDiv" src="./assets/uploadPhotoLogo.jpg" style="width: 150px;" alt="">
+                        <img *ngIf="employee.uploadedPhoto" class="centerDiv" [src]="employee.uploadedPhoto" style="width: 150px;" alt="">
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -57,7 +63,7 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        
+
         <mat-form-field class="grid2">
             <mat-label>Area Of Interest</mat-label>
             <mat-select name="interests" [(ngModel)]="employee.areaOfInterest" multiple required>
@@ -75,12 +81,11 @@
         <br>
 
         <div class="grid1">
-            <button *ngIf="create" 
-            [disabled]="!f1.valid"
-            mat-stroked-button color="primary" (click)="onCreate()">Create</button>
+            <button *ngIf="create" [disabled]="!f1.valid || !employee.uploadedPhoto" mat-stroked-button color="primary"
+                (click)="onCreate()">Create</button>
         </div>
-    
-            
+
+
     </form>
 
 </mat-card>

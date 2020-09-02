@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Employee } from '../models/employee';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  constructor() { }
+  constructor(private httpService:HttpClient) { }
 
-  url = "https://localhost:44335/api" + "employee/";
+  url = "https://localhost:44335/api/" + "employee/";
 
-    // login(employee:Employee): Observable<any> {
-    //   let url = this.url + "login";
-    //   return this.httpService.post(url,loginModel);
-    // }
+    create(employee:Employee): Observable<any> {
+      let url = this.url;
+      return this.httpService.post(url,employee);
+    }
 }
