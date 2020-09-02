@@ -5,10 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 namespace Test.Models
 {
     public partial class SGTestContext : DbContext
-    {
+    {   /*
         public SGTestContext()
         {
         }
+        */
 
         public SGTestContext(DbContextOptions<SGTestContext> options)
             : base(options)

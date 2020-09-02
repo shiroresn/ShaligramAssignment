@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Test.Models;
 
 namespace Test
 {
@@ -22,6 +24,9 @@ namespace Test
         {
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
+            var connection = "Server=localhost\\SQLEXPRESS02;Database=SGTest;Integrated Security=True";
+            services.AddDbContextPool<SGTestContext>(options => options.UseSqlServer(connection));
+
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
