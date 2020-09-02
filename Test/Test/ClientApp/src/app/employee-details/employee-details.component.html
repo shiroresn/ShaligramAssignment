@@ -27,6 +27,11 @@
                         <img *ngIf="employee.uploadedPhoto" class="centerDiv" [src]="employee.uploadedPhoto" style="width: 150px;" alt="">
                     </div>
                 </td>
+                <td rowspan="3" *ngIf="!create">
+                    <button mat-icon-button color="primary" matTooltip="Download Photo" (click)="downloadPhoto()">
+                        <mat-icon>cloud_download</mat-icon>
+                      </button>
+                </td>
             </tr>
             <tr>
                 <td>

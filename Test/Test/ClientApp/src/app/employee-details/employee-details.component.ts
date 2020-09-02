@@ -153,4 +153,12 @@ export class EmployeeDetailsComponent implements OnInit, OnDestroy {
     );
   }
 
+  
+downloadPhoto() {
+  var a = document.createElement("a"); //Create <a>
+  a.href = this.employee.uploadedPhoto;//Image Base64 Goes here
+  a.download = this.employee.employeeName+".png"; //File name Here
+  a.click(); //Downloaded file
+}
+
 }
