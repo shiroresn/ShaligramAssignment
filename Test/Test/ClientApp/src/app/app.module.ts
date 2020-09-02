@@ -42,11 +42,13 @@ import { MatTreeModule } from '@angular/material/tree';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    EmployeeDetailsComponent,
   ],
   imports: [
     BrowserModule,
