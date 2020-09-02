@@ -1,5 +1,4 @@
-# ShaligramAssignment
-
+# Run
 For front end application : 
 
 1) go to project location
